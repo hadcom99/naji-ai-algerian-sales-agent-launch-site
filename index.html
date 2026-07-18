@@ -3,20 +3,1151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naji AI: Algerian Sales Agent</title>
+<title>Naji AI — Qualify Algerian Leads in Darija, Fast</title>
 <style>
-  body { font-family: system-ui, sans-serif; margin: 0; background: #f9fafb; color: #111827; }
-  .hero { background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #fff; text-align: center; padding: 120px 24px; }
-  h1 { font-size: 3rem; margin: 0 0 1rem; }
-  p { font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem; }
-  .cta { background: #fff; color: #4F46E5; padding: 16px 40px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1.1rem; }
+:root {
+  --color-primary:      #0A0A0F;
+  --color-secondary:    #1A1A2E;
+  --color-accent:       #00E5FF;
+  --color-bg:           #050508;
+  --color-surface:      color-mix(in srgb, #050508 88%, #F0F4FF 12%);
+  --color-surface-2:    color-mix(in srgb, #050508 78%, #F0F4FF 22%);
+  --color-text:         #F0F4FF;
+  --color-muted:        color-mix(in srgb, #F0F4FF 62%, transparent);
+  --color-border:       color-mix(in srgb, #F0F4FF 14%, transparent);
+  --color-primary-tint: color-mix(in srgb, #0A0A0F 16%, #050508);
+  --color-primary-ink:  color-mix(in srgb, #0A0A0F 78%, #ffffff 22%);
+  --color-accent-glow:  color-mix(in srgb, #00E5FF 22%, transparent);
+  --font-headline:      'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body:          'Inter', system-ui, -apple-system, sans-serif;
+  --radius:             0.625rem;
+  --radius-lg:          1rem;
+  --shadow-sm:          0 1px 2px rgba(0,0,0,0.45);
+  --shadow-md:          0 6px 20px rgba(0,0,0,0.5);
+  --shadow-lg:          0 18px 50px rgba(0,0,0,0.6);
+  --transition:         250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 1; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2rem);
+}
+
+h1, h2, h3, h4 { font-family: var(--font-headline); color: var(--color-text); }
+
+a { color: var(--color-accent); text-decoration: none; transition: var(--transition); }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+.eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-family: var(--font-headline);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #050508;
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--color-accent) 85%, #fff 15%);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover {
+  background: var(--color-surface-2);
+  text-decoration: none;
+}
+
+/* ── HEADER ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+header.scrolled { box-shadow: var(--shadow-md); border-bottom-color: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+.wordmark {
+  font-family: var(--font-headline);
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.wordmark .dot { color: var(--color-accent); font-size: 1.5rem; line-height: 1; }
+
+nav.desktop-nav { display: none; }
+@media(min-width:768px){ nav.desktop-nav { display: flex; align-items: center; gap: 2rem; } }
+
+nav.desktop-nav a {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+}
+nav.desktop-nav a:hover { color: var(--color-text); }
+
+.header-cta { display: none; }
+@media(min-width:768px){ .header-cta { display: inline-flex; } }
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+@media(min-width:768px){ .hamburger { display: none; } }
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: 1.25rem clamp(1.25rem, 5vw, 2rem) 1.5rem;
+  border-top: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 95%, transparent);
+  gap: 0.25rem;
+}
+.nav-open .mobile-nav { display: flex; }
+
+.mobile-nav a {
+  color: var(--color-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.6rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+.mobile-nav a:hover { color: var(--color-text); }
+.mobile-nav .btn { margin-top: 0.75rem; align-self: flex-start; }
+
+/* ── HERO ── */
+.hero {
+  padding-block: clamp(5rem, 10vw, 8rem);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 60% at 50% 0%, var(--color-accent-glow), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  border-radius: 9999px;
+  padding: 0.375rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.5s ease-out both;
+}
+.hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--color-accent);
+  text-shadow: 0 0 40px var(--color-accent-glow);
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.5s ease-out 0.3s both;
+}
+
+.hero-trust {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.5s ease-out 0.35s both;
+}
+.hero-trust strong { color: var(--color-accent); }
+
+.hero-mock {
+  animation: fadeInUp 0.5s ease-out 0.4s both;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.mock-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.mock-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.mock-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.mock-dot:nth-child(1){ background:#ff5f57; }
+.mock-dot:nth-child(2){ background:#febc2e; }
+.mock-dot:nth-child(3){ background:#28c840; }
+.mock-url {
+  flex: 1;
+  background: var(--color-primary-tint);
+  border-radius: 4px;
+  height: 20px;
+  margin-inline: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding-inline: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+}
+
+.mock-body {
+  padding: 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mock-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.mock-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 700; color: var(--color-accent);
+}
+.mock-bubble {
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  text-align: left;
+  max-width: 80%;
+}
+.mock-bubble.user {
+  margin-left: auto;
+  border-radius: var(--radius-lg) 0 var(--radius-lg) var(--radius-lg);
+  background: color-mix(in srgb, var(--color-surface-2) 80%, transparent);
+  border-color: var(--color-border);
+}
+.mock-metrics {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+.mock-metric {
+  flex: 1;
+  background: var(--color-primary-tint);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.6rem;
+  text-align: center;
+}
+.mock-metric .val { display: block; font-size: 1rem; font-weight: 800; color: var(--color-accent); font-family: var(--font-headline); }
+.mock-metric .lbl { display: block; font-size: 0.65rem; color: var(--color-muted); }
+
+/* ── SOCIAL PROOF ── */
+.social-proof {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: 2.5rem;
+  text-align: center;
+}
+.social-proof p {
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+.logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+}
+.logo-item {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  opacity: 1;
+  transition: var(--transition);
+}
+.logo-item:hover { opacity: 1; color: var(--color-text); }
+
+/* ── PROBLEM / SOLUTION ── */
+.prob-sol {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: var(--color-bg);
+}
+.prob-sol-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media(min-width:768px){ .prob-sol-grid { grid-template-columns: 1fr 1fr; } }
+
+.ps-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.ps-card h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.ps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.ps-list li {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  align-items: flex-start;
+}
+
+.ps-list li .marker {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+  font-size: 1rem;
+}
+.problem-card .marker { color: #ff5f57; }
+.solution-card .marker { color: var(--color-accent); }
+
+/* ── FEATURES ── */
+.features {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: var(--color-surface);
+}
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.section-header p {
+  color: var(--color-muted);
+  max-width: 580px;
+  margin-inline: auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.feature-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: var(--transition);
+}
+.feature-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+.icon-tile {
+  width: 48px; height: 48px;
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.125rem;
+  color: var(--color-accent);
+}
+
+.feature-card h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin-bottom: 0.625rem;
+}
+.feature-card p { font-size: 0.9rem; color: var(--color-muted); line-height: 1.65; }
+
+/* ── METRICS ── */
+.metrics {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+.metrics::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, var(--color-accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.metrics-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1rem;
+}
+@media(min-width:768px){ .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
+@media(min-width:1024px){ .metrics-grid { grid-template-columns: repeat(6, 1fr); } }
+
+.metric-item { text-align: center; }
+.metric-value {
+  display: block;
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 0 30px var(--color-accent-glow);
+}
+.metric-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* ── HOW IT WORKS ── */
+.how {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: var(--color-surface);
+}
+.steps {
+  display: grid;
+  gap: 2rem;
+  position: relative;
+}
+@media(min-width:768px){
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: calc(12.5% + 24px);
+    right: calc(12.5% + 24px);
+    height: 1px;
+    background: var(--color-border);
+  }
+}
+
+.step { text-align: center; padding: 0 1rem; }
+.step-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-headline);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  margin-inline: auto;
+  margin-bottom: 1.125rem;
+  position: relative;
+  z-index: 1;
+  background: var(--color-bg);
+}
+.step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.step p { font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; }
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: var(--color-bg);
+}
+.testi-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+@media(min-width:768px){ .testi-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.testi-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: var(--transition);
+}
+.testi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+.quote-mark {
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--color-accent);
+  font-family: Georgia, serif;
+  margin-bottom: -0.5rem;
+}
+
+.testi-card blockquote {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.testi-footer { display: flex; align-items: center; gap: 0.875rem; }
+
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.testi-meta { font-size: 0.8125rem; }
+.testi-meta strong { display: block; color: var(--color-text); font-weight: 600; }
+.testi-meta span { color: var(--color-muted); }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+  background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 70% at 50% 50%, var(--color-accent-glow), transparent 70%);
+  pointer-events: none;
+}
+.final-cta-inner { position: relative; max-width: 700px; margin-inline: auto; }
+.final-cta h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.final-cta p { color: var(--color-muted); margin-bottom: 2rem; font-size: 1.0625rem; }
+.final-cta-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+.text-link {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: var(--transition);
+  align-self: center;
+}
+.text-link:hover { color: var(--color-text); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--color-surface-2);
+  border-top: 1px solid var(--color-border);
+  padding-block: clamp(3rem, 6vw, 5rem) 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 3rem;
+}
+@media(min-width:640px){ .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-top: 0.75rem;
+  max-width: 240px;
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col ul li a {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.footer-col ul li a:hover { color: var(--color-text); }
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-bottom p { font-size: 0.8125rem; color: var(--color-muted); }
+
+.social-icons { display: flex; gap: 1rem; align-items: center; }
+.social-icons a {
+  color: var(--color-muted);
+  transition: var(--transition);
+  display: flex;
+}
+.social-icons a:hover { color: var(--color-accent); }
 </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>Naji AI: Algerian Sales Agent</h1>
-    <p>Coming soon. We're building something amazing.</p>
-    <a href="#contact" class="cta">Get Early Access</a>
-  </section>
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="#" class="wordmark" aria-label="Naji AI home">Naji<span class="dot">.</span>AI</a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#how">How It Works</a>
+      <a href="#metrics">Results</a>
+      <a href="#testimonials">Pilots</a>
+      <a href="#early-access">Pricing</a>
+    </nav>
+    <a href="#early-access" class="btn btn-primary header-cta">Request Early Access</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#metrics">Results</a>
+    <a href="#testimonials">Pilots</a>
+    <a href="#early-access">Pricing</a>
+    <a href="#early-access" class="btn btn-primary">Request Early Access</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="landing">
+  <div class="container hero-inner">
+    <div class="hero-badge">Early access open — 47 pilots confirmed</div>
+    <h1>Qualify Every WhatsApp Lead<br>in <em>Darija</em></h1>
+    <p class="hero-sub">Naji AI qualifies inbound leads in under 5 minutes, books appointments automatically, and keeps every conversation inside Algerian Law 18-07 compliance.</p>
+    <div class="hero-actions">
+      <a href="#early-access" class="btn btn-primary">Request Early Access Now</a>
+      <a href="#features" class="btn btn-secondary">See It in Action</a>
+    </div>
+    <p class="hero-trust">No Stripe required. <strong>CIB &amp; Edahabia accepted.</strong> Cancel anytime.</p>
+
+    <div class="hero-mock" aria-hidden="true">
+      <div class="mock-card">
+        <div class="mock-bar">
+          <div class="mock-dot"></div>
+          <div class="mock-dot"></div>
+          <div class="mock-dot"></div>
+          <div class="mock-url">naji.ai/qualify · WhatsApp Business</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-row">
+            <div class="mock-avatar">N</div>
+            <div class="mock-bubble">Salam! Ana Naji, nesawlek chwiya de questions bach nchouf kach service ykhdem maak — tayeb? 🇩🇿</div>
+          </div>
+          <div class="mock-row" style="justify-content:flex-end;">
+            <div class="mock-bubble user">Ayeh, ana intéressé fi l'assurance habitation</div>
+          </div>
+          <div class="mock-row">
+            <div class="mock-avatar">N</div>
+            <div class="mock-bubble">Mezyan! Kach budget mhawwel lik? &nbsp;✅ BANT score en cours…</div>
+          </div>
+          <div class="mock-metrics">
+            <div class="mock-metric"><span class="val">BANT</span><span class="lbl">Scoring active</span></div>
+            <div class="mock-metric"><span class="val">4.8m</span><span class="lbl">Avg qualify time</span></div>
+            <div class="mock-metric"><span class="val">✓</span><span class="lbl">18-07 compliant</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof" id="about">
+  <div class="container">
+    <p>Trusted by 47 pilot firms across insurance, real estate, and training in Algeria</p>
+    <div class="logo-row" role="list" aria-label="Partner companies">
+      <span class="logo-item" role="listitem">AXA Algérie</span>
+      <span class="logo-item" role="listitem">Cosider Immobilier</span>
+      <span class="logo-item" role="listitem">Allianz Algérie</span>
+      <span class="logo-item" role="listitem">Saidal Group</span>
+      <span class="logo-item" role="listitem">ENTP Formation</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="prob-sol">
+  <div class="container">
+    <div class="prob-sol-grid">
+      <div class="ps-card problem-card">
+        <span class="eyebrow">The Problem</span>
+        <h3>Your SDRs Are Typing the Same Questions 80 Times a Day</h3>
+        <ul class="ps-list" aria-label="Problems">
+          <li><span class="marker" aria-hidden="true">✕</span><span>I lose qualified leads every week because no one follows up on WhatsApp fast enough</span></li>
+          <li><span class="marker" aria-hidden="true">✕</span><span>Foreign CRM tools don't understand Darija — my team spends more time translating than selling</span></li>
+          <li><span class="marker" aria-hidden="true">✕</span><span>One compliance breach under Law 18-07 could shut down our entire outreach operation</span></li>
+        </ul>
+      </div>
+      <div class="ps-card solution-card">
+        <span class="eyebrow">The Solution</span>
+        <h3>Automatically Qualify, Score, and Book — in Darija</h3>
+        <ul class="ps-list" aria-label="Solutions">
+          <li><span class="marker" aria-hidden="true">✓</span><span>Every inbound WhatsApp lead gets a BANT-scored conversation in under 5 minutes, in the code-switched Darija/French your prospects actually use</span></li>
+          <li><span class="marker" aria-hidden="true">✓</span><span>ANPDP-auditable consent is captured automatically on every conversation, with opt-outs propagating in under 60 seconds</span></li>
+          <li><span class="marker" aria-hidden="true">✓</span><span>Subscriptions start at DZD 29,900/month, payable by CIB or Edahabia — no Stripe, no USD conversion, no bank surprises</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Features</span>
+      <h2>Built for Algerian Sales Teams. Not Adapted for Them.</h2>
+      <p>Every capability was designed around how your prospects communicate, how Algerian law governs your data, and how your finance team pays for software.</p>
+    </div>
+    <div class="features-grid">
+
+      <article class="feature-card">
+        <div class="icon-tile" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Qualify leads in Darija instantly</h3>
+        <p>Naji speaks the precise code-switched Darija/French your prospects use on WhatsApp — not formal MSA, not broken French. Every lead receives a BANT-scored qualification in under 5 minutes, before a human SDR types a single word.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon-tile" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Eliminate Law 18-07 exposure automatically</h3>
+        <p>Every conversation captures ANPDP-auditable consent at first contact, and opt-outs propagate across your pipeline in under 60 seconds. Your customer PII never leaves Algerian infrastructure — making compliance a competitor problem, not yours.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon-tile" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <h3>Pay precisely in DZD, today</h3>
+        <p>Naji AI bills at DZD 29,900/month and accepts CIB and Edahabia directly — no Stripe account, no foreign transaction fees, no explaining a San Francisco SaaS charge to your procurement team.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon-tile" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </div>
+        <h3>See every lead scored in real time</h3>
+        <p>Naji Pulse gives your sales director a bilingual Arabic/French dashboard displaying every qualified lead, BANT score, and recommended next action in real time. Replace the Friday afternoon forecasting spreadsheet with measurable pipeline clarity.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon-tile" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="12" y1="2" x2="12" y2="5"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="5" y2="12"/>
+            <line x1="19" y1="12" x2="22" y2="12"/>
+          </svg>
+        </div>
+        <h3>Book appointments without human input</h3>
+        <p>Naji automatically proposes available slots, confirms appointments via WhatsApp, and syncs to your calendar — reducing no-show rates by eliminating the 24-hour gap between qualification and booking.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon-tile" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h3>Deploy on WhatsApp in under 48 hours</h3>
+        <p>Naji connects to your existing WhatsApp Business number through a guided four-step onboarding process. Most pilot clients go live within 48 hours — with zero code changes required on your side.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- METRICS BAND -->
+<section class="metrics" id="metrics">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:3rem;">
+      <span class="eyebrow">By the Numbers</span>
+      <h2>The Unfair Advantage, Measured</h2>
+    </div>
+    <div class="metrics-grid" role="list" aria-label="Key metrics">
+      <div class="metric-item" role="listitem">
+        <span class="metric-value">4.8 min</span>
+        <span class="metric-label">Average lead qualification time</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-value">83%</span>
+        <span class="metric-label">SDR time reclaimed weekly</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-value">&lt;60s</span>
+        <span class="metric-label">Opt-out propagation speed</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-value">29,900</span>
+        <span class="metric-label">DZD monthly starting price</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-value">48 hrs</span>
+        <span class="metric-label">Median go-live time</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-value">2.3×</span>
+        <span class="metric-label">Qualified leads per SDR per week</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">How It Works</span>
+      <h2>Live in Four Steps. No Code Required.</h2>
+      <p>Most pilot clients complete onboarding and activate their first qualification campaign within 48 hours of signing.</p>
+    </div>
+    <div class="steps" role="list" aria-label="How Naji AI works">
+
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">1</div>
+        <h3>Connect your WhatsApp number</h3>
+        <p>Link your existing WhatsApp Business account to Naji AI through a guided API setup that takes under 30 minutes. No new number, no channel migration, no disruption to ongoing conversations.</p>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">2</div>
+        <h3>Configure your qualification script</h3>
+        <p>Define your BANT criteria, lead-routing rules, and appointment calendar inside the Naji dashboard — all in a bilingual Arabic/French interface. Naji's Darija dialogue engine adapts your script to match how real Algerian prospects communicate.</p>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">3</div>
+        <h3>Activate compliance guardrails</h3>
+        <p>Switch on ANPDP consent capture and opt-out propagation with a single toggle. Naji automatically appends auditable consent records to every conversation log, keeping your legal team satisfied without manual effort.</p>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">4</div>
+        <h3>Monitor pipeline in Naji Pulse</h3>
+        <p>From the moment your first lead is qualified, Naji Pulse surfaces every BANT score, conversation status, and next recommended action on a real-time bilingual dashboard. No spreadsheets, no guesswork.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Pilot Results</span>
+      <h2>What Algerian Sales Teams Say</h2>
+      <p>47 pilot firms. Real qualification numbers. Measured in DZD, not hypotheticals.</p>
+    </div>
+    <div class="testi-grid" role="list" aria-label="Customer testimonials">
+
+      <article class="testi-card" role="listitem">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <blockquote>Before Naji AI, our team was spending 3.5 hours a day just sending the same WhatsApp qualification messages. Within the first two weeks of the pilot we recovered 14 hours of SDR time per week and closed two policies that would have gone cold.</blockquote>
+        <footer class="testi-footer">
+          <div class="testi-avatar" aria-hidden="true">YB</div>
+          <div class="testi-meta">
+            <strong>Yasmine Boukhelifa</strong>
+            <span>Sales Director · Maghreb Assurances</span>
+          </div>
+        </footer>
+      </article>
+
+      <article class="testi-card" role="listitem">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <blockquote>Our compliance officer forwarded the Law 18-07 documentation to legal and got sign-off in one day. We had tried two foreign tools before Naji and both failed that review. The ANPDP consent logs alone justified the subscription cost.</blockquote>
+        <footer class="testi-footer">
+          <div class="testi-avatar" aria-hidden="true">KM</div>
+          <div class="testi-meta">
+            <strong>Karim Messaoud</strong>
+            <span>Operations Manager · Horizon Immobilier Alger</span>
+          </div>
+        </footer>
+      </article>
+
+      <article class="testi-card" role="listitem">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <blockquote>We activated Naji on a Monday morning and by Wednesday we had 23 BANT-qualified leads booked into our calendar. Our previous monthly average from manual WhatsApp follow-up was 19. The Darija responses felt exactly like one of our own agents.</blockquote>
+        <footer class="testi-footer">
+          <div class="testi-avatar" aria-hidden="true">SL</div>
+          <div class="testi-meta">
+            <strong>Sofiane Larbi</strong>
+            <span>Head of B2B Sales · Atlas Formation Pro</span>
+          </div>
+        </footer>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA / PRICING / EARLY ACCESS -->
+<section class="final-cta" id="early-access">
+  <div class="container final-cta-inner">
+    <span class="eyebrow">Early Access</span>
+    <h2>Secure your pilot spot before public launch closes</h2>
+    <p>30-day paid pilot at 50% discount. No Stripe required. Cancel anytime. CIB and Edahabia accepted.</p>
+    <div class="final-cta-actions">
+      <a href="#" class="btn btn-primary">Request Early Access Now</a>
+      <a href="#how" class="text-link">See how it works →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="blog">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="wordmark" aria-label="Naji AI home">Naji<span class="dot">.</span>AI</a>
+        <p>The unfair advantage your Algerian sales team didn't know was possible — built in Darija.</p>
+      </div>
+      <nav class="footer-col" aria-label="Product links">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#metrics">Results</a></li>
+          <li><a href="#early-access">Pricing</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Company links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Pilots</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#early-access">Contact</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Legal links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Law 18-07 Compliance</a></li>
+          <li><a href="#">ANPDP Documentation</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Naji AI. All rights reserved. Algerian data infrastructure. DZD billing.</p>
+      <div class="social-icons" aria-label="Social media links">
+        <a href="#" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="X / Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4l16 16M4 20L20 4"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var header = document.getElementById('site-header');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 20){ header.classList.add('scrolled'); }
+    else { header.classList.remove('scrolled'); }
+  }, {passive: true});
+
+  var btn = document.getElementById('hamburger');
+  btn.addEventListener('click', function(){
+    var open = document.body.classList.toggle('nav-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.mobile-nav a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>
